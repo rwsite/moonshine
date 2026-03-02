@@ -61,7 +61,9 @@ class Tab extends AbstractWithComponents implements HasLabelContract, HasIconCon
      */
     public function labelAttributes(array $attributes): static
     {
-        $this->labelAttributes = $this->labelAttributes->merge($attributes);
+        if (method_exists($this->labelAttributes, 'merge')) {
+            $this->labelAttributes = $this->labelAttributes->merge($attributes);
+        }
 
         return $this;
     }
@@ -123,6 +125,7 @@ class Tab extends AbstractWithComponents implements HasLabelContract, HasIconCon
         return [
             'icon' => $this->getIcon(6),
             'label' => $this->getLabel(),
+            'labelRaw' => $this->isLabelRaw(),
             'labelAttributes' => $this->labelAttributes,
             'id' => $this->getId(),
             'content' => Components::make(
