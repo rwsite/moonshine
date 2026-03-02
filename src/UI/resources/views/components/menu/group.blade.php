@@ -1,7 +1,5 @@
 @props([
     'label' => '',
-    'labelRaw' => false,
-    'escapeUi' => false,
     'previewLabel' => '',
     'icon' => '',
     'onlyIcon' => false,
@@ -41,13 +39,7 @@
             </div>
         @endif
 
-        <span class="menu-text @if($onlyIcon) menu-only-icon @endif">
-            @if(! $escapeUi || $labelRaw)
-                {!! $label !!}
-            @else
-                {{ $label }}
-            @endif
-        </span>
+        <span class="menu-text @if($onlyIcon) menu-only-icon @endif">{{ $label }}</span>
         <span class="menu-arrow">
             <x-moonshine::icon
                 icon="chevron-down"

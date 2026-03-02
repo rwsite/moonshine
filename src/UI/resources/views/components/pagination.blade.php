@@ -13,7 +13,6 @@
     'total' => 0,
     'links' => [],
     'translates' => [],
-    'escapeUi' => false,
 ])
 
 @if($simple)
@@ -27,25 +26,13 @@
                         href="{{ $prev_page_url }}"
                         @if($async) @click.prevent="asyncRequest" @endif
                         class="pagination-link pagination-link--first"
-                        @if(! $escapeUi)
-                            title="{!! $translates['previous']  !!}"
-                        @else
-                            title="{{ $translates['previous']  }}"
-                        @endif
+                        title="{!! $translates['previous']  !!}"
                     >
-                        @if(! $escapeUi)
-                            {!! $translates['previous'] !!}
-                        @else
-                            {{ $translates['previous'] }}
-                        @endif
+                        {!! $translates['previous'] !!}
                     </a>
                 @else
                     <span class="pagination-link _is-disabled">
-                        @if(! $escapeUi)
-                            {!! $translates['previous'] !!}
-                        @else
-                            {{ $translates['previous'] }}
-                        @endif
+                        {!! $translates['previous'] !!}
                     </span>
                 @endif
             </li>
@@ -57,25 +44,13 @@
                         href="{{ $next_page_url }}"
                         @if($async) @click.prevent="asyncRequest" @endif
                         class="pagination-link pagination-link--last"
-                        @if(! $escapeUi)
-                            title="{!! $translates['next']  !!}"
-                        @else
-                            title="{{ $translates['next']  }}"
-                        @endif
+                        title="{!! $translates['next']  !!}"
                     >
-                        @if(! $escapeUi)
-                            {!! $translates['next'] !!}
-                        @else
-                            {{ $translates['next'] }}
-                        @endif
+                        {!! $translates['next'] !!}
                     </a>
                 @else
                     <span class="pagination-link _is-disabled">
-                        @if(! $escapeUi)
-                            {!! $translates['next'] !!}
-                        @else
-                            {{ $translates['next'] }}
-                        @endif
+                        {!! $translates['next'] !!}
                     </span>
                 @endif
             </li>
@@ -91,11 +66,7 @@
                     <a href="{{ $prev_page_url }}"
                        @if($async) @click.prevent="asyncRequest" @endif
                        class="pagination-link pagination-link--first"
-                       @if(! $escapeUi)
-                           title="{!! $translates['previous']  !!}"
-                       @else
-                           title="{{ $translates['previous']  }}"
-                       @endif
+                       title="{!! $translates['previous']  !!}"
                     >
                         <x-moonshine::icon icon="chevron-double-left" />
                     </a>
@@ -116,11 +87,7 @@
                        @if($async) @click.prevent="asyncRequest" @endif
                        class="pagination-link @if($link['active']) _is-active @endif"
                     >
-                        @if(! $escapeUi)
-                            {!! $link['label'] !!}
-                        @else
-                            {{ $link['label'] }}
-                        @endif
+                        {!! $link['label'] !!}
                     </a>
                 </li>
                 @endif
@@ -131,11 +98,7 @@
                     <a href="{{ $next_page_url }}"
                        @if($async) @click.prevent="asyncRequest" @endif
                        class="pagination-link pagination-link--last"
-                       @if(! $escapeUi)
-                           title="{!! $translates['next']  !!}"
-                       @else
-                           title="{{ $translates['next']  }}"
-                       @endif
+                       title="{!! $translates['next']  !!}"
                     >
                         <x-moonshine::icon icon="chevron-double-right" />
                     </a>
@@ -143,33 +106,17 @@
             @endif
         </ul>
         <div class="pagination-results">
-            @if(! $escapeUi)
-                {!! $translates['showing']  !!}
-            @else
-                {{ $translates['showing']  }}
-            @endif
+            {!! $translates['showing']  !!}
             @if ($from)
                 {{ $from }}
-                @if(! $escapeUi)
-                    {!! $translates['to']  !!}
-                @else
-                    {{ $translates['to']  }}
-                @endif
+                {!! $translates['to']  !!}
                 {{ $to }}
             @else
                 {{ $per_page }}
             @endif
-            @if(! $escapeUi)
-                {!! $translates['of']  !!}
-            @else
-                {{ $translates['of']  }}
-            @endif
+            {!! $translates['of']  !!}
             {{ $total }}
-            @if(! $escapeUi)
-                {!! $translates['results']  !!}
-            @else
-                {{ $translates['results']  }}
-            @endif
+            {!! $translates['results']  !!}
         </div>
     </div>
     <!-- END: Pagination -->

@@ -3,7 +3,6 @@
     'active' => null,
     'justifyAlign' => 'start',
     'isVertical' => false,
-    'escapeUi' => false,
 ])
 @if($tabs !== [])
     <!-- Tabs -->
@@ -21,11 +20,7 @@
                             type="button"
                     >
                         {!! $tab['icon'] !!}
-                        @if(! $escapeUi || ($tab['labelRaw'] ?? false))
-                            {!! $tab['label'] !!}
-                        @else
-                            {{ $tab['label'] }}
-                        @endif
+                        {!! $tab['label'] !!}
                     </button>
                 </li>
             @endforeach

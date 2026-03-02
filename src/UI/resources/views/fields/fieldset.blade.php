@@ -2,12 +2,7 @@
     'label' => '',
     'fields' => [],
 ])
-<x-moonshine::form.fieldset
-    :label="$label"
-    :labelRaw="$labelRaw"
-    :escapeLabel="$escapeLabel"
-    :attributes="$attributes"
->
+<x-moonshine::form.fieldset :label="$label" :attributes="$attributes">
     <div class="space-elements">
         <x-moonshine::fields-group
             :components="$fields"

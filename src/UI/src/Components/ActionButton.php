@@ -210,9 +210,7 @@ class ActionButton extends MoonShineComponent implements
      */
     public function dispatchEvent(array|string $events, array $exclude = [], bool $withoutPayload = false): static
     {
-        $attributes = $this->getAttributes();
-
-        if (! method_exists($attributes, 'has') || ! $attributes->has('x-data')) {
+        if (! $this->getAttributes()->has('x-data')) {
             $this->xDataMethod('actionButton');
         }
 
@@ -568,15 +566,11 @@ class ActionButton extends MoonShineComponent implements
      */
     protected function viewData(): array
     {
-        $escapeUi = (bool) $this->getCore()->getConfig()->get('html_escaping.ui_elements', false);
-
         return [
             'inDropdown' => $this->isInDropdown(),
             'hasComponent' => $this->hasComponent(),
             'component' => $this->hasComponent() ? $this->getComponent() : '',
             'label' => $this->getLabel(),
-            'labelRaw' => $this->isLabelRaw(),
-            'escapeUi' => $escapeUi,
             'url' => $this->getUrl(),
             'icon' => $this->getIcon(),
             'badge' => $this->hasBadge() ? $this->getBadge() : false,

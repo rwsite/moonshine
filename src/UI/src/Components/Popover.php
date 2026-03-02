@@ -15,10 +15,6 @@ final class Popover extends MoonShineComponent
 
     protected string $view = 'moonshine::components.popover';
 
-    protected bool $titleRaw = false;
-
-    protected bool $triggerRaw = false;
-
     public function __construct(
         public string $title,
         public string $trigger = '',
@@ -38,48 +34,6 @@ final class Popover extends MoonShineComponent
         ]);
     }
 
-    public function title(string $title): self
-    {
-        $this->title = $title;
-        $this->titleRaw = false;
-
-        return $this;
-    }
-
-    public function titleHtml(string $title): self
-    {
-        $this->title = $title;
-        $this->titleRaw = true;
-
-        return $this;
-    }
-
-    public function trigger(string $trigger): self
-    {
-        $this->trigger = $trigger;
-        $this->triggerRaw = false;
-
-        return $this;
-    }
-
-    public function triggerHtml(string $trigger): self
-    {
-        $this->trigger = $trigger;
-        $this->triggerRaw = true;
-
-        return $this;
-    }
-
-    public function isTitleRaw(): bool
-    {
-        return $this->titleRaw;
-    }
-
-    public function isTriggerRaw(): bool
-    {
-        return $this->triggerRaw;
-    }
-
     protected function prepareBeforeRender(): void
     {
         $this->customAttributes([
@@ -89,13 +43,8 @@ final class Popover extends MoonShineComponent
 
     protected function viewData(): array
     {
-        $escapeUi = (bool) $this->getCore()->getConfig()->get('html_escaping.ui_elements', false);
-
         return [
             'slot' => $this->getSlot(),
-            'escapeUi' => $escapeUi,
-            'titleRaw' => $this->isTitleRaw(),
-            'triggerRaw' => $this->isTriggerRaw(),
         ];
     }
 }

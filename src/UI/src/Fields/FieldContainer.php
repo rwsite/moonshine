@@ -29,21 +29,13 @@ final class FieldContainer extends MoonShineComponent
     ) {
         parent::__construct();
 
-        $wrapperAttributes = $this->field->getWrapperAttributes();
-
-        if (method_exists($wrapperAttributes, 'merge')) {
-            $wrapperAttributes = $wrapperAttributes->merge([
-                'required' => $this->field->getAttribute('required'),
-            ]);
-        }
-
-        $this->attributes = $wrapperAttributes;
+        $this->attributes = $this->field
+            ->getWrapperAttributes()
+            ->merge(['required' => $this->field->getAttribute('required')]);
     }
 
     protected function prepareBeforeRender(): void
     {
-        $escapeHint = (bool) $this->getCore()->getConfig()->get('html_escaping.hints', false);
-
         if (! $this->field->isPreviewMode() && $this->field->hasLink()) {
             $link = Link::make(
                 $this->field->getLinkValue(),
@@ -61,16 +53,10 @@ final class FieldContainer extends MoonShineComponent
         }
 
         if ($hint = $this->field->getHint()) {
-            $hintRaw = method_exists($this->field, 'isHintRaw')
-                ? (bool) \call_user_func([$this->field, 'isHintRaw'])
-                : false;
-
             $this->afterInner = new ComponentSlot(
                 $this->getCore()->getRenderer()->render('moonshine::components.form.hint', [
                     'attributes' => new MoonShineComponentAttributeBag(),
                     'slot' => $hint,
-                    'escape' => $escapeHint,
-                    'raw' => $hintRaw,
                 ])->render()
             );
         }
@@ -78,15 +64,8 @@ final class FieldContainer extends MoonShineComponent
 
     protected function viewData(): array
     {
-        $escapeLabel = (bool) $this->getCore()->getConfig()->get('html_escaping.labels', false);
-        $labelRaw = method_exists($this->field, 'isLabelRaw')
-            ? (bool) \call_user_func([$this->field, 'isLabelRaw'])
-            : false;
-
         return [
             'label' => $this->field->getLabel(),
-            'labelRaw' => $labelRaw,
-            'escapeLabel' => $escapeLabel,
             'formName' => $this->field->getFormName(),
 
             'errors' => data_get($this->field->getErrors(), $this->field->getNameDot()),

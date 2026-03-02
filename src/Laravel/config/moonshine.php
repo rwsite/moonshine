@@ -66,14 +66,6 @@ return [
     'disk_options' => [],
     'cache' => 'file',
 
-    // Opt-in HTML escaping (v4 compatibility defaults)
-    'html_escaping' => [
-        'hints' => false,
-        'labels' => false,
-        'card_values' => false,
-        'ui_elements' => false,
-    ],
-
     // Authentication and profile
     'auth' => [
         'enabled' => true,

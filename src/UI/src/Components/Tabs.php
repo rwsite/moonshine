@@ -83,9 +83,7 @@ class Tabs extends AbstractWithComponents
      */
     public function getActive(): string|int|null
     {
-        $active = $this->getTabs()->firstWhere('active', true);
-
-        return $active instanceof Tab ? $active->getId() : null;
+        return $this->getTabs()->firstWhere('active', true)?->getId();
     }
 
     /**
@@ -111,7 +109,6 @@ class Tabs extends AbstractWithComponents
     {
         /** @var Collection<array-key, Tab> $tabs */
         $tabs = $this->getTabs();
-        $escapeUi = (bool) $this->getCore()->getConfig()->get('html_escaping.ui_elements', false);
 
         return [
             'tabs' => $tabs
@@ -121,7 +118,6 @@ class Tabs extends AbstractWithComponents
             'active' => $this->getActive(),
             'justifyAlign' => $this->getJustifyAlign(),
             'isVertical' => $this->isVertical(),
-            'escapeUi' => $escapeUi,
         ];
     }
 
